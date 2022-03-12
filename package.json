@@ -18,7 +18,9 @@
   },
   "homepage": "https://github.com/long2512/nodejs#readme",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.17.3",
+    "mongoose": "^6.2.6",
     "nodemon": "^2.0.15"
   },
   "devDependencies": {

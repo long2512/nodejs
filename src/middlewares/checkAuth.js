@@ -6,3 +6,4 @@ export const checkAuth = (req, res,next) => {
         console.log('Chim cút');
     }
 }
+export default checkAuth
