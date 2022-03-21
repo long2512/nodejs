@@ -1,59 +1,58 @@
-import mongoose from "mongoose";
-const Product = mongoose.model('Product', {name: String});
+import Product from "../models/product";
 
-export const create = async (req, res) =>{
+export const create = async (req, res) => {
     try {
         const product = await new Product(req.body).save();
-        res.json(product);
+        res.json(product)
     } catch (error) {
         res.status(400).json({
-            error:"Không thêm được sản phẩm"
+            error: "Khong them duoc san pham"
         })
     }
 }
 
 export const list = async (req, res) => {
     try {
-        const products = await Product.find({}).exec();
-        res.json(products);
+        const product = await Product.find({}).exec();
+        res.json(product)
     } catch (error) {
         res.status(400).json({
-            error: "Không có sản phẩm"
+            error: "Khong them duoc san pham"
         })
     }
 }
 
 export const get = async (req, res) => {
-    console.log(req.params.id)
     try {
         const product = await Product.findOne({_id: req.params.id}).exec();
-        res.json(product);
+        res.json(product)
     } catch (error) {
         res.status(400).json({
-            error: "Không có sản phẩm"
+            error: "Khong them duoc san pham"
         })
     }
-    // res.json(data.find(item => item.id == req.params.id));
 }
+
 export const remove = async (req, res) => {
     try {
-        const product = await Product.findOneAndDelete({_id: req.params.id}).exec();
-        res.json(product);
+        const product = await Product.findByIdAndRemove({_id: req.params.id}).exec();
+        res.json(product)
     } catch (error) {
         res.status(400).json({
-            error: "Xóa sản phẩm không thành công"
+            error: "Khong them duoc san pham"
         })
     }
 }
+
 export const update = async (req, res) => {
     const condition = { id: req.params.id }
-    const update = req.body;
+    const update = req.body
     try {
         const product = await Product.findOneAndUpdate(condition, update).exec();
-        res.json(product);
+        res.json(product)
     } catch (error) {
         res.status(400).json({
-            error: "Xóa sản phẩm không thành công"
+            error: "Khong them duoc san pham"
         })
     }
 }
