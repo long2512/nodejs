@@ -25,6 +25,25 @@ paths:
         required: true
         schema: 
           $ref: "#/components/schemas/Product"
+    delete:
+      summary: xoá sản phẩm
+      responses: 
+        "200":
+          description: Xoá phẩm thành công
+        "400":
+          description: Không xoá được sản phẩm
+    put:
+      summary: Update sản phẩm
+      responses:
+        "200":
+          description: Update sản phẩm thành công
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Bắt buộc phải có các trường giống bên dưới"
+        required: true
+        schema: 
+          $ref: "#/components/schemas/Product"
           
 # Models
 components:
