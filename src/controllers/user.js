@@ -1,23 +1,17 @@
-import Users from "../models/user";
+import User from "../models/user";
 
-export const register = async (req, res) => {
+export const userById = async (req, res, next, id) => {
     try {
-        const signup = await new Users(req.body).save();
-        res.json(signup)
+        const user = await User.findById(id).exec();
+        if(!user){
+            res.status(400).json({
+                message: "Không tìm thấy user"
+            })
+        }
+        req.profile = user;
+        req.profile.password = undefined;
+        next();
     } catch (error) {
-        res.status(400).json({
-            error: "Khong dang ky duoc"
-        })
-    }
-}
-
-export const login = async (req, res) => {
-    try {
-        const signin = await Users.findOne({_email: req.params.email}).exec();
-        res.json(signin);
-    } catch (error) {
-        res.status(400).json({
-            error: "Khong dang ky duoc"
-        })
+        console.log(error);
     }
 }

@@ -1,11 +1,11 @@
 import { Router } from "express";
 import { create, get, list, remove, update } from "../controllers/product";
-import { checkAuth } from "../middleware/checkAuth";
+import { checkAuth, isAdmin, isAuth, requiredSigin } from "../middleware/checkAuth";
 const router = Router();
 
 router.get("/products", checkAuth, list);
 
-router.post("/products", checkAuth, create);
+router.post("/products/:userId", requiredSigin, isAuth, isAdmin, create);
 
 router.get("/products/:id", checkAuth, get);
 
