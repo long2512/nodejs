@@ -4,62 +4,43 @@ info:
   version: 1.0.1
   title: "Swagger for ecommerce"
 
-paths:
+paths: 
   /api/products:
-    get:
+    get: 
       summary: Lấy danh sách sản phẩm
       responses: 
         "200":
           description: Lấy sản phẩm thành công
-        "400":
+        "400": 
           description: Không lấy được sản phẩm
     post:
       summary: Thêm sản phẩm
       responses:
-        "200":
+        "200": 
           description: Thêm sản phẩm thành công
       parameters:
       - in: "body"
         name: "body"
-        description: "Bắt buộc phải có các trường giống bên dưới"
+        description: "Bắt buộc phải có các trường dưới đây"
         required: true
-        schema: 
+        schema:
           $ref: "#/components/schemas/Product"
-    delete:
-      summary: xoá sản phẩm
-      responses: 
-        "200":
-          description: Xoá phẩm thành công
-        "400":
-          description: Không xoá được sản phẩm
-    put:
-      summary: Update sản phẩm
-      responses:
-        "200":
-          description: Update sản phẩm thành công
-      parameters:
-      - in: "body"
-        name: "body"
-        description: "Bắt buộc phải có các trường giống bên dưới"
-        required: true
-        schema: 
-          $ref: "#/components/schemas/Product"
-          
-# Models
+
+#Models
 components:
   schemas:
     Product:
       properties:
-        _id:
+        _id: 
           type: integer
         name:
           type: string
           minLength: 5
-        price: 
+        price:
           type: integer
         category:
           type: string
-      required:
+      required: 
         - name
         - price
         - category
